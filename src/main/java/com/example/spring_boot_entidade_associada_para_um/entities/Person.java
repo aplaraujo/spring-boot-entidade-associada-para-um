@@ -4,6 +4,8 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
 @Entity
@@ -16,12 +18,17 @@ public class Person {
     private String name;
     private Double salary;
 
+    @ManyToOne
+    @JoinColumn(name="department_id")
+    private Department department;
+
     public Person() {}
 
-    public Person(Long id, String name, Double salary) {
+    public Person(Long id, String name, Double salary, Department department) {
         this.id = id;
         this.name = name;
         this.salary = salary;
+        this.department = department;
     }
 
     public Long getId() {
@@ -48,6 +55,14 @@ public class Person {
         this.salary = salary;
     }
 
+    public Department getDepartment() {
+        return department;
+    }
+
+    public void setDepartment(Department department) {
+        this.department = department;
+    }
+
     @Override
     public int hashCode() {
         final int prime = 31;
@@ -72,6 +87,4 @@ public class Person {
             return false;
         return true;
     }
-
-    
 }
