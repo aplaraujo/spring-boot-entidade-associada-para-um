@@ -1,5 +1,8 @@
 package com.example.spring_boot_entidade_associada_para_um.services;
 
+import com.example.spring_boot_entidade_associada_para_um.mappers.PersonMapperOne;
+import com.example.spring_boot_entidade_associada_para_um.mappers.PersonMapperTwo;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -13,7 +16,22 @@ import com.example.spring_boot_entidade_associada_para_um.repositories.PersonRep
 import jakarta.persistence.EntityNotFoundException;
 
 @Service
+@RequiredArgsConstructor
 public class PersonService {
+
+    private final PersonRepository personRepository;
+    private final DepartmentRepository departmentRepository;
+    private final PersonMapperOne mapperOne;
+    private final PersonMapperTwo mapperTwo;
+
+    // Caso 1
+    public PersonDepartmentDTO save(PersonDepartmentDTO dto) {
+        Person person = mapperOne.toEntity(dto);
+        Department dept = departmentRepository.findById(dto.department().id()).orElseThrow(() -> new EntityNotFoundException("Departmento não encontrado"));
+        person.setDepartment(dept);
+        person = personRepository.save(person);
+        return mapperOne.toDTO(person);
+    }
 
 //    public PersonDepartmentDTO insert(PersonDepartmentDTO dto) {
 //        Person entity = new Person();
