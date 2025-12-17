@@ -21,29 +21,29 @@ public class PersonService {
     @Autowired
     private DepartmentRepository departmentRepository;
 
-    public PersonDepartmentDTO insert(PersonDepartmentDTO dto) {
-        Person entity = new Person();
-        entity.setName(dto.getName());
-        entity.setSalary(dto.getSalary());
-        Department dept = departmentRepository.findById(dto.getDepartment().getId()).orElseThrow(() -> new EntityNotFoundException("Departmento não encontrado"));
-        // Department dept = new Department();
-        // dept.setId(dto.getDepartment().getId());
-
-        entity.setDepartment(dept);
-        entity = personRepository.save(entity);
-        return new PersonDepartmentDTO(entity);
-    }
-
-    public PersonDTO insert(PersonDTO dto) {
-        Person entity = new Person();
-        entity.setName(dto.getName());
-        entity.setSalary(dto.getSalary());
-        Department dept = departmentRepository.findById(dto.getDepartmentId()).orElseThrow(() -> new EntityNotFoundException("Departmento não encontrado"));
-        // Department dept = new Department();
-        // dept.setId(dto.getDepartment().getId());
-
-        entity.setDepartment(dept);
-        entity = personRepository.save(entity);
-        return new PersonDTO(entity);
-    }
+//    public PersonDepartmentDTO insert(PersonDepartmentDTO dto) {
+//        Person entity = new Person();
+//        entity.setName(dto.getName());
+//        entity.setSalary(dto.getSalary());
+//        Department dept = departmentRepository.findById(dto.getDepartment().getId()).orElseThrow(() -> new EntityNotFoundException("Departmento não encontrado"));
+//        // Department dept = new Department();
+//        // dept.setId(dto.getDepartment().getId());
+//
+//        entity.setDepartment(dept);
+//        entity = personRepository.save(entity);
+//        return new PersonDepartmentDTO(entity);
+//    }
+//
+//    public PersonDTO insert(PersonDTO dto) {
+//        Person entity = new Person();
+//        entity.setName(dto.getName());
+//        entity.setSalary(dto.getSalary());
+//        Department dept = departmentRepository.findById(dto.getDepartmentId()).orElseThrow(() -> new EntityNotFoundException("Departmento não encontrado"));
+//        // Department dept = new Department();
+//        // dept.setId(dto.getDepartment().getId());
+//
+//        entity.setDepartment(dept);
+//        entity = personRepository.save(entity);
+//        return new PersonDTO(entity);
+//    }
 }
