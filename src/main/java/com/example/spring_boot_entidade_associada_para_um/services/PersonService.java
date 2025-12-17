@@ -15,12 +15,6 @@ import jakarta.persistence.EntityNotFoundException;
 @Service
 public class PersonService {
 
-    @Autowired
-    private PersonRepository personRepository;
-
-    @Autowired
-    private DepartmentRepository departmentRepository;
-
 //    public PersonDepartmentDTO insert(PersonDepartmentDTO dto) {
 //        Person entity = new Person();
 //        entity.setName(dto.getName());
