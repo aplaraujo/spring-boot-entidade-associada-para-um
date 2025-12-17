@@ -22,8 +22,16 @@ public class PersonController implements GenericController{
     private final PersonService personService;
 
     // Caso 1
+//    @PostMapping
+//    public ResponseEntity<Void> save(@RequestBody PersonDepartmentDTO dto) {
+//        personService.save(dto);
+//        var url = gerarHeaderLocation(dto.id());
+//        return ResponseEntity.created(url).build();
+//    }
+
+    // Caso 2
     @PostMapping
-    public ResponseEntity<Void> save(@RequestBody PersonDepartmentDTO dto) {
+    public ResponseEntity<Void> save(@RequestBody PersonDTO dto) {
         personService.save(dto);
         var url = gerarHeaderLocation(dto.id());
         return ResponseEntity.created(url).build();

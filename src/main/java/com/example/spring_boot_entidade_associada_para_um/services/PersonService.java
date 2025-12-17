@@ -25,12 +25,21 @@ public class PersonService {
     private final PersonMapperTwo mapperTwo;
 
     // Caso 1
-    public PersonDepartmentDTO save(PersonDepartmentDTO dto) {
-        Person person = mapperOne.toEntity(dto);
-        Department dept = departmentRepository.findById(dto.department().id()).orElseThrow(() -> new EntityNotFoundException("Departmento não encontrado"));
+//    public PersonDepartmentDTO save(PersonDepartmentDTO dto) {
+//        Person person = mapperOne.toEntity(dto);
+//        Department dept = departmentRepository.findById(dto.department().id()).orElseThrow(() -> new EntityNotFoundException("Departmento não encontrado"));
+//        person.setDepartment(dept);
+//        person = personRepository.save(person);
+//        return mapperOne.toDTO(person);
+//    }
+
+    // Caso 2
+    public PersonDTO save(PersonDTO dto) {
+        Person person = mapperTwo.toEntity(dto);
+        Department dept = departmentRepository.findById(dto.departmentId()).orElseThrow(() -> new EntityNotFoundException("Departmento não encontrado"));
         person.setDepartment(dept);
         person = personRepository.save(person);
-        return mapperOne.toDTO(person);
+        return mapperTwo.toDTO(person);
     }
 
 //    public PersonDepartmentDTO insert(PersonDepartmentDTO dto) {
